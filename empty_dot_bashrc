@@ -1,0 +1,15 @@
+eval "$(starship init bash)"
+export EDITOR=hx
+set -o vi
+
+alias :q="exit"
+# alias numa="for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done"
+# alias cpu="sudo ${directory}/scripts/cpu_performance.sh"
+alias fd="pilot"
+
+alias gs="git status"
+alias gp="git push"
+alias gc="git commit"
+alias ga="git add --patch"
+alias gd="git diff --output-indicator-new=' ' --output-indicator-old=' '"
+alias gl="git log --all --graph --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'"
