@@ -1,5 +1,5 @@
 eval "$(starship init bash)"
-export EDITOR=hx
+export EDITOR=nvim
 
 set -o vi
 
