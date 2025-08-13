@@ -1,42 +1,7 @@
-{{ if eq .chezmoi.config.data.theme "rose_pine" }}
-palette = {
-    "Base": "#191724",
-    "Surface": "#1f1d2e",
-    "Overlay": "#26233a",
-    "Muted": "#6e6a86",
-    "Subtle": "#908caa",
-    "Text": "#e0def4",
-    "Love": "#eb6f92",
-    "Gold": "#f6c177",
-    "Rose": "#ebbcba",
-    "Pine": "#31748f",
-    "Foam": "#9ccfd8",
-    "Iris": "#c4a7e7",
-    "HighlightLow": "#21202e",
-    "HighlightMed": "#403d52",
-    "HighlightHigh": "#524f67",
-}
-{{ end }}
-{{ if eq .chezmoi.config.data.theme "rose_pine_dawn" }}
-palette = {
-    "Base": "#faf4ed",
-    "Surface": "#fffaf3",
-    "Overlay": "#f2e9e1",
-    "Muted": "#9893a5",
-    "Subtle": "#797593",
-    "Text": "#575279",
-    "Love": "#b4637a",
-    "Gold": "#ea9d34",
-    "Rose": "#d7827e",
-    "Pine": "#286983",
-    "Foam": "#56949f",
-    "Iris": "#907aa9",
-    "HighlightLow": "#f4ede8",
-    "HighlightMed": "#dfdad9",
-    "HighlightHigh": "#cecacd",
-}
-{{ end }}
-{{ if eq .chezmoi.config.data.theme "rose_pine_moon" }}
+# Make LSP stop complaining
+config = config  # type: ignore
+c = c  # type: ignore
+
 palette = {
     "Base": "#232136",
     "Surface": "#2a273f",
@@ -54,12 +19,6 @@ palette = {
     "HighlightMed": "#44415a",
     "HighlightHigh": "#56526e",
 }
-{{ end }}
-
-
-# Make LSP stop complaining
-config = config  # type: ignore
-c = c  # type: ignore
 
 
 def colors_setup(c, palette):
@@ -166,7 +125,6 @@ def colors_setup(c, palette):
     c.colors.tabs.pinned.selected.odd.fg = palette["Text"]
     c.colors.tabs.pinned.selected.odd.bg = palette["HighlightMed"]
 
-
     c.colors.webpage.bg = palette["Base"]
     c.colors.contextmenu.menu.bg = palette["Surface"]
     c.colors.contextmenu.menu.fg = palette["Text"]
@@ -197,7 +155,6 @@ def colors_setup(c, palette):
 
     ## Border for follow hint
     c.hints.border = f"1px solid {palette['Overlay']}"
-
 
     c.colors.downloads.bar.bg = palette["Base"]
     c.colors.downloads.error.bg = palette["Base"]
