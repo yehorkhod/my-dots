@@ -133,7 +133,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 -- Latex
 local zathura_launched = false
 
-vim.keymap.set('n', '<leader>l', function()
+vim.keymap.set('n', '<leader>lc', function()
     vim.cmd("w")
     local file = vim.fn.expand('%:p')
     if file == "" then
@@ -173,9 +173,10 @@ vim.lsp.config("lua_ls", {
 })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover)
-vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>j", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.cmd("set completeopt+=noselect")
-
 
 -- Clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')

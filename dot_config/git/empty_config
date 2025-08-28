@@ -3,7 +3,6 @@
   email = e.khodysko@gmail.com
 
 [core]
-  editor = hx
   preloadindex = true
   whitespace = error
 
