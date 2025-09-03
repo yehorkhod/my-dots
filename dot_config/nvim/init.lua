@@ -1,7 +1,6 @@
 -- General options
 vim.o.number = true
 vim.o.relativenumber = true
-
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
@@ -101,7 +100,10 @@ vim.keymap.set("n", "<leader>gb", gitsigns.blame_line)
 
 
 -- Colorize
--- require("colorizer").setup()
+local old_deprecate = vim.deprecate
+vim.deprecate = function() end
+require("colorizer").setup()
+vim.deprecate = old_deprecate
 
 
 -- Treesitter
@@ -112,6 +114,7 @@ require("nvim-treesitter.configs").setup({
         "gleam", "html", "css",
         "python", "r",
         "cpp", "c",
+        "typst",
     },
     ignore_install = {},
     highlight = { enable = true },
@@ -130,38 +133,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 
--- Latex
-local zathura_launched = false
-
-vim.keymap.set('n', '<leader>lc', function()
-    vim.cmd("w")
-    local file = vim.fn.expand('%:p')
-    if file == "" then
-        print("No file to compile!")
-        return
-    end
-
-    local pdf_file = vim.fn.expand('%:r') .. ".pdf"
-    local cmd = "xelatex " .. file
-    print("Running: " .. cmd)
-    vim.fn.system(cmd)
-
-    if vim.v.shell_error ~= 0 then
-        print("Compilation failed! Check the output.")
-    else
-        print("Compilation successful!")
-        if zathura_launched == false then
-            local open_cmd = "zathura " .. pdf_file .. " &"
-            os.execute(open_cmd)
-            print("Opened PDF in Zathura!")
-            zathura_launched = true
-        end
-    end
-end)
-
-
 -- LSP
-vim.lsp.enable({ "lua_ls", "nil_ls", "pyright", "gleam" })
+vim.lsp.enable({ "lua_ls", "nil_ls", "pyright", "gleam", "tinymist" })
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
@@ -177,6 +150,7 @@ vim.keymap.set("n", "<leader>j", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.cmd("set completeopt+=noselect")
+
 
 -- Clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
